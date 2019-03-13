@@ -8,20 +8,44 @@
 
 class Main
 {
-
+    private $db;
 
     public function __construct()
     {
         // TODO: DB Connection
-        $db   = new Database();
+        $this->db = new Database();
     }
 
-    public function addCategory($category, $status){
+    public function addCategory($data)
+    {
+        $category = $data['category'];
+        $status = $data['status'];
+        $result = null;
 
-        $sql = "INSERT INTO categories (name,user_id,status)VALUES('$category',1,'$status')";
+        if (strlen($category) < 3) {
+            $result = "Category is too short";
+        } elseif ($category == '') {
+            $result = "Category Field is required";
+        } elseif ($status == '') {
+            $result = "Category Field is required";
+        }
+        $sql = "INSERT INTO categories (name,user_id,status)VALUES(:category,:uid,:status)";
+        $query = $this->db->pdo->prepare($sql);
+        $query->bindValue("category", str_replace(" ", "_", trim($category)));
+        $query->bindValue("status", $status);
+        $query->bindValue("uid", 1);
+        if ($query->execute() == 1) {
+            $result = "Category Added!";
+        }
+        return $result;
+    }
 
-
-        return "category is ". $category . "And Status is ". $status;
+    public function getData($table){
+        $sql = "SELECT * FROM $table ORDER BY id ASC";
+        $query = $this->db->pdo->prepare($sql);
+        $query->execute();
+        $result = $query->fetchAll();
+        return $result;
     }
 
 }
