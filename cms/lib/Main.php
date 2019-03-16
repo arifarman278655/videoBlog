@@ -48,4 +48,18 @@ class Main
         return $result;
     }
 
+    public function getDataById($table, $id){
+
+       /// select * from categories where id = 1;
+        $sql = "SELECT * FROM " . $table . " where id = ". $id;
+        $query = $this->db->pdo->prepare($sql);
+        $query->execute();
+        $result = $query->fetchAll();
+        return $result;
+    }
+
+    public function categoryUpdate(){
+
+    }
+
 }
