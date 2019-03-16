@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a9b1da4-9195-4444-a886-43f751597a81" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/cms/categoryUpdated.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cms/addCategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/addCategory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cms/lib/Main.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/lib/Main.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,8 +56,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cms/lib/Main.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="31" column="22" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="22" />
+            <state relative-caret-position="275">
+              <caret line="39" column="9" lean-forward="true" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -104,8 +101,8 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/cms/tables.php" />
         <option value="$PROJECT_DIR$/cms/addCategory.php" />
-        <option value="$PROJECT_DIR$/cms/lib/Main.php" />
         <option value="$PROJECT_DIR$/cms/categoryUpdated.php" />
+        <option value="$PROJECT_DIR$/cms/lib/Main.php" />
       </list>
     </option>
   </component>
@@ -183,15 +180,16 @@
       <workItem from="1552447417744" duration="24000" />
       <workItem from="1552482294451" duration="7163000" />
       <workItem from="1552707825458" duration="530000" />
-      <workItem from="1552741931694" duration="6443000" />
+      <workItem from="1552741931694" duration="6740000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28390000" />
+    <option name="totallyTimeSpent" value="28687000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.2881997" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -427,8 +425,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cms/lib/Main.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="31" column="22" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="22" />
+        <state relative-caret-position="275">
+          <caret line="39" column="9" lean-forward="true" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
         </state>
       </provider>
     </entry>
