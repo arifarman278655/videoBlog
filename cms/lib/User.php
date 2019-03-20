@@ -28,7 +28,7 @@ class User
             Session::set('login', true);
             Session::set("id", $result->id);
             Session::set("username", $result->username);
-            Session::set("loginmsg", "<div class='alert alert-success'><strong>Success !</strong>You are loged in. </div>");
+            Session::set("loginmsg", "<div class='alert alert-success'><strong>Success !</strong>You are logged in. </div>");
             echo "<script>location.href='index.php'</script>";
         }else {
             $msg = "<div class='alert alert-danger'><strong>Error !</strong> Email Or Password Wrong ! Try Again!</div>";

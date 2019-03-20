@@ -1,6 +1,7 @@
-
 <?php
-session_start();
+include 'lib/Session.php';
+Session::init();
+Session::checkSession();
 include 'constants/constants.php';
 include 'lib/Database.php';
 
@@ -47,11 +48,20 @@ $db = new Database();
 
         <!-- Topbar -->
           <?php include 'inc/top_bar.php'; ?>
+
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
+            <?php
+            $logMsg = Session::get('loginmsg');
+
+            if ($logMsg){
+                echo $logMsg;
+                Session::set('loginmsg', null);
+            }
+            ?>
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
