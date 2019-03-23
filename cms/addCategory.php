@@ -1,8 +1,10 @@
 <?php
+include 'lib/Session.php';
+Session::init();
+Session::checkSession();
 include 'constants/constants.php';
 include 'lib/Database.php';
 include 'lib/Main.php';
-
 $con = new Main();
 ?>
 

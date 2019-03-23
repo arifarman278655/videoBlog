@@ -1,4 +1,7 @@
 <?php
+include 'lib/Session.php';
+Session::init();
+Session::checkSession();
 include 'constants/constants.php';
 include 'lib/Database.php';
 include 'lib/Main.php';
@@ -55,7 +58,7 @@ $con = new Main();
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Add Category</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Update Category</h1>
                     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                             class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                 </div>
@@ -67,7 +70,7 @@ $con = new Main();
                         <?php
                         if (isset($_REQUEST['submit'])) {
                             if ($_SERVER['REQUEST_METHOD'] == 'POST') { ?>
-                                <div class="alert alert-success"><?php echo $con->addCategory($_POST); ?></div>
+                                <div class="alert alert-success"><?php echo $con->updateCategory($_POST); ?></div>
                             <?php } else { ?>
                                 <div class="alert alert-danger">Request Method Invalid!</div>
                             <?php }
@@ -88,6 +91,8 @@ $con = new Main();
                                 <div class="col-sm-12 mb-3 mb-sm-0">
                                     <input type="text" class="form-control" value="<?php echo str_replace("_", " ", $result['name']) ?>" name="category" id="exampleFirstName"
                                            placeholder="Enter Category Name" required>
+
+                                    <input type="text" name="id" value="<?php echo $result['id'] ?>" hidden>
                                 </div>
                             </div>
 
