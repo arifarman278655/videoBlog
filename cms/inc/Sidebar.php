@@ -35,8 +35,10 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Category</h6>
-                <a class="collapse-item" href="addCategory.php">Add Category</a>
+                <a class="collapse-item" href="add_category.php">Add Category</a>
                 <a class="collapse-item" href="cards.php">category List</a>
+                <a class="collapse-item" href="add_content.php">Add Content</a>
+                <a class="collapse-item" href="add_video.php">Add Video</a>
             </div>
         </div>
     </li>

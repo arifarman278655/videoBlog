@@ -96,7 +96,46 @@ class Main
         }
     }
 
-    public function addUser($data,$file_temp, $uploaded_image)
+    public function gen_uuid()
+    {
+        $uuid = array(
+            'time_low' => 0,
+            'time_mid' => 0,
+            'time_hi' => 0,
+            'clock_seq_hi' => 0,
+            'clock_seq_low' => 0,
+            'node' => array()
+        );
+
+        $uuid['time_low'] = mt_rand(0, 0xffff) + (mt_rand(0, 0xffff) << 16);
+        $uuid['time_mid'] = mt_rand(0, 0xffff);
+        $uuid['time_hi'] = (4 << 12) | (mt_rand(0, 0x1000));
+        $uuid['clock_seq_hi'] = (1 << 7) | (mt_rand(0, 128));
+        $uuid['clock_seq_low'] = mt_rand(0, 255);
+
+        for ($i = 0; $i < 6; $i++) {
+            $uuid['node'][$i] = mt_rand(0, 255);
+        }
+
+        $uuid = sprintf('%08x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x',
+            $uuid['time_low'],
+            $uuid['time_mid'],
+            $uuid['time_hi'],
+            $uuid['clock_seq_hi'],
+            $uuid['clock_seq_low'],
+            $uuid['node'][0],
+            $uuid['node'][1],
+            $uuid['node'][2],
+            $uuid['node'][3],
+            $uuid['node'][4],
+            $uuid['node'][5]
+        );
+
+        return $uuid;
+    }
+
+
+    public function addUser($data, $file_temp, $uploaded_image)
     {
         $full_name = $data['full_name'];
         $username = $data['username'];
@@ -124,6 +163,54 @@ class Main
             $result = "Users Added";
             move_uploaded_file($file_temp, $uploaded_image);
 
+        }
+        return $result;
+    }
+
+    public function addContent($data, $file_temp, $uploaded_image)
+    {
+        $title = $data['title'];
+        $short_desc = $data['short_desc'];
+        $long_desc = $data['long_desc'];
+        $tag = $data['tag'];
+        $cat_id = $data['cat_id'];
+
+
+        $result = null;
+
+        $sql = "INSERT INTO contents(title,short_desc,long_desc,cat_id,postal_img,tags)VALUE (:title, :short_desc, :long_desc, :cat_id, :postal_img, :tags)";
+        $query = $this->db->pdo->prepare($sql);
+        $query->bindValue('title', str_replace(' ', '_', trim($title)));
+        $query->bindValue('short_desc', $short_desc);
+        $query->bindValue('long_desc', $long_desc);
+        $query->bindValue('cat_id', $cat_id);
+        $query->bindValue('postal_img', $uploaded_image);
+        $query->bindValue('tags', $tag);
+        if ($query->execute() == 1) {
+            $result = "Content Added!";
+            move_uploaded_file($file_temp, $uploaded_image);
+
+        }
+        return $result;
+    }
+
+    public function addVideo($data)
+    {
+        $content_id = $data['content_id'];
+        $video_url = $data['video_url'];
+        $status = $data['status'];
+
+
+        $result = null;
+
+        $sql = "INSERT INTO videos(content_id, file_path,status, user_id)VALUE (:content_id, :file_path, :status, :user_id)";
+        $query = $this->db->pdo->prepare($sql);
+        $query->bindValue('content_id', $content_id);
+        $query->bindValue('file_path',$video_url);
+        $query->bindValue('status', $status);
+        $query->bindValue('user_id', Session::get('id'));
+        if ($query->execute() == 1) {
+            $result = "Video Added!";
         }
         return $result;
     }
