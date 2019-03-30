@@ -6,7 +6,7 @@
  * Time: 8:47 PM
  */
 
-class Main
+class Main implements QueryInterface
 {
     private $db;
 
@@ -45,7 +45,7 @@ class Main
 
     public function getData($table)
     {
-        $sql = "SELECT * FROM $table ORDER BY id ASC";
+        $sql = "SELECT categories.*, users.username as user_name FROM categories INNER JOIN users ON categories.user_id=users.id";
         $query = $this->db->pdo->prepare($sql);
         $query->execute();
         $result = $query->fetchAll();
@@ -206,7 +206,7 @@ class Main
         $sql = "INSERT INTO videos(content_id, file_path,status, user_id)VALUE (:content_id, :file_path, :status, :user_id)";
         $query = $this->db->pdo->prepare($sql);
         $query->bindValue('content_id', $content_id);
-        $query->bindValue('file_path',$video_url);
+        $query->bindValue('file_path', $video_url);
         $query->bindValue('status', $status);
         $query->bindValue('user_id', Session::get('id'));
         if ($query->execute() == 1) {
@@ -215,4 +215,43 @@ class Main
         return $result;
     }
 
+    public function delete($id, $table)
+    {
+        $sql = "DELETE FROM $table WHERE id = :id";
+        $query = $this->db->pdo->prepare($sql);
+        $query->bindValue(':id', $id);
+        if ($query->execute() == 1) {
+            $msg = "<div class='alert alert-danger'><strong>Success !</strong> Item Successfully Deleted ! </div>";
+            return $msg;
+        } else {
+            $msg = "<div class='alert alert-danger'><strong>Error !</strong> Something Wrong, Please try again </div>";
+            return $msg;
+        }
+    }
+
+    public function detailById($id, $table)
+    {
+        $sql = "SELECT * FROM $table WHERE id = :id";
+        $query = $this->db->pdo->prepare($sql);
+        $query->bindValue(':id', $id);
+        if ($query->execute() == 1) {
+            $msg = "<div class='alert alert-danger'><strong>Success !</strong> Item Successfully Deleted ! </div>";
+            return $msg;
+        } else {
+            $msg = "<div class='alert alert-danger'><strong>Error !</strong> Something Wrong, Please try again </div>";
+            return $msg;
+        }
+    }
+
+
+    function getAllDataFrom($table)
+    {
+        // TODO: Implement getAllDataFrom() method.
+
+        $sql = "SELECT categories.*, users.username as user_name FROM categories INNER JOIN users ON categories.user_id=users.id";
+        $query = $this->db->pdo->prepare($sql);
+        $query->execute();
+        $result = $query->fetchAll();
+        return $result;
+    }
 }

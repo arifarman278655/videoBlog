@@ -4,9 +4,12 @@ Session::init();
 Session::checkSession();
 include 'constants/constants.php';
 include 'lib/Database.php';
+include 'lib/QueryInterface.php';
+include 'lib/Content.php';
 include 'lib/Main.php';
 include 'lib/Helper.php';
-$con = new Main();
+//$con = new Main();
+$content = new Content();
 $helper = new Helper();
 ?>
 <!DOCTYPE html>

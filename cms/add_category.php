@@ -44,6 +44,11 @@ include 'inc/header.php';
                             <?php }
                         } ?>
 
+                        <?php if (isset($_GET['del'])){
+                            $id = $_GET['id'];
+                            echo $con->delete($id, "categories");
+                        } ?>
+
                         <form class="user" action="" method="POST">
                             <div class="form-group row">
                                 <div class="col-sm-12 mb-3 mb-sm-0">
@@ -89,7 +94,7 @@ include 'inc/header.php';
                                         </thead>
                                          <tbody>
                                          <?php
-                                         $results = $con->getData("categories");
+                                         $results = $con->getAllDataFrom('categories');
                                          $i = 1;
 //                                         print_r($getData);
 
@@ -98,13 +103,13 @@ include 'inc/header.php';
                                          <tr>
                                              <td><?php echo $i++; ?></td>
                                              <td><?php echo str_replace("_", " ", $result['name']); ?></td>
-                                             <td><?php echo $result['user_id']; ?></td>
+                                             <td><?php echo $result['user_name']; ?></td>
                                              <td class="<?php echo ($result['status'] == 1)? 'text-success':'text-danger'; ?>"><?php echo ($result['status'] == 1)? 'Active':'De-Active'; ?></td>
                                              <td><?php echo $result['create_at']; ?></td>
                                              <td>
                                                  <a href="categoryUpdated.php?id=<?php echo $result['id'];?>" class="text-info"><i class="fas fa-pencil-alt"></i></a>
-                                                 <a href="catUpdate.php" class="text-danger"><i class="fas fa-trash"></i></a>
-                                                 <a href="catUpdate.php" class="text-success"><i class="fas fa-search-plus"></i></a>
+                                                 <a href="?del=delete&id=<?php echo $result['id'];?>" class="text-danger"><i class="fas fa-trash"></i></a>
+                                                 <a href="catDetail.php?id=<?php echo $result['id'];?>" class="text-success"><i class="fas fa-search-plus"></i></a>
                                              </td>
                                          </tr>
                                          <?php } ?>
